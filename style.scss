@@ -1,10 +1,10 @@
 html, body {
 	margin: 0;
 	overflow: hidden;
-
 }
 
-.root {
+#root {
+	overflow: hidden;
 }
 
 h1, h2, h3 {
@@ -43,6 +43,9 @@ footer {
   	scroll-snap-type: y mandatory;
 }
 .slide {
+	//overflow: auto;
+	display: flex;
+	justify-content: space-between;
 	height: 100vh;
 	scroll-snap-align: start;
 }
@@ -57,4 +60,70 @@ footer {
 	width: 34%;
 	height: 100%;
 	background-color: teal;
+}
+
+.text-container {
+	position: relative;
+	width: 250px;
+	height: 60%;
+	background-color: gray;
+	margin: 10%;
+}
+
+.tagline {
+	margin: 10%;
+}
+
+.nav-container {
+	display: flex;
+	background-color: white;
+	position: fixed;
+	list-style: none;
+	right: 20px;
+	bottom: 80px;
+	height: 180px;
+	width: 90px;
+
+	.nav-bar-container{
+		background-color: orange;
+		width: 50%;
+		position: relative;
+
+		.location-icon {
+			background-color: white;
+			position: absolute;
+			border-radius: 50%;
+			left: 50%;
+			margin-left: -3px;
+			margin-top: -3px;
+			top: 0%;
+			width: 6px;
+			height: 6px;
+		}
+		.nav-line {
+			background-color: black;
+			position: absolute;
+			left: 0%;
+			height: 2px;
+			margin-top: -1px;
+			width: 100%;
+		}
+
+		.vertical-nav-line {
+			background-color: black;
+			position: absolute;
+			left: 50%;
+			top: 0px;
+			margin-left: -1px;
+
+
+			width: 2px;
+			height: 100%;
+		}
+	}
+	.nav-titles-container{
+		background-color: yellow;
+		width: 50%;
+	}
+	
 }
