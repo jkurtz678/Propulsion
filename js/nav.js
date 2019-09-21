@@ -4,6 +4,6 @@
 function scrollUpdate(container)
 {	 
 	var scrollPercentage = 100 * container.scrollTop / (container.scrollHeight-container.clientHeight); 
-	console.log("horizontal_width: ", scrollPercentage);
+	//console.log("horizontal_width: ", scrollPercentage);
 	return scrollPercentage;
 }

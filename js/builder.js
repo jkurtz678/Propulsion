@@ -21,54 +21,75 @@ function buildFooter(container, trackName, trackAuthor) {
     container.appendChild(footer)
 }
 
-function buildNavLines(nav_bar_container, numSlides) {
-    let i;
-    console.log("numSlides: " + numSlides);
-
-    for(i = 0; i < numSlides; i++) {
-        console.log("building line num: " + i);
+//left side of container
+function buildNavLines(nav_bar_container, slides) {
+    //let i;
+    //for(i = 0; i < numSlides; i++) {
+    for( let [index, val] of slides.entries()) { 
         const nav_line = document.createElement('div');
         nav_line.setAttribute('class', 'nav-line');
-        nav_line.style.top = String(i * (100/(numSlides-1))) +'%';  
+        nav_line.style.top = String(index * (100/(slides.length-1))) +'%';  
+        nav_line.onclick = function() {
+            console.log("trying to scroll to slide: " + index);
+            const slideElements = document.getElementsByClassName('slide');
+            slideElements[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
         nav_bar_container.appendChild(nav_line);
+
     }
 }
 
-function buildNav(container, slides) {
-    const nav_container = document.createElement('div');
-    nav_container.setAttribute('class', 'nav-container');
+//right side of nav container
+function buildNavTitles(nav_container, slides) {
+    const nav_titles_container = document.createElement('div');
+    nav_titles_container.setAttribute('class', 'nav-titles-container');
+    nav_container.appendChild(nav_titles_container);
 
+    for( let [index, val] of slides.entries()) { 
+        const slide_item = document.createElement('li');
+        slide_item.setAttribute('class', 'nav-title');
+        slide_item.textContent = val.name
+        slide_item.style.top = String(index * (100/(slides.length-1))) +'%';
+        slide_item.onclick = function() {
+            console.log("trying to scroll to slide: " + index);
+            const slideElements = document.getElementsByClassName('slide');
+            slideElements[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        nav_titles_container.appendChild(slide_item);
+
+        console.log( "element height: " + slide_item.offsetHeight);
+        slide_item.style.marginTop = String(slide_item.offsetHeight/2 * -1) + "px";
+    }   
+}
+
+function buildNavBar( nav_container, slides)  {
     const nav_bar_container = document.createElement('div');
     nav_bar_container.setAttribute('class', 'nav-bar-container');
 
-    const nav_titles_container = document.createElement('div');
-    nav_titles_container.setAttribute('class', 'nav-titles-container');
-
     nav_container.appendChild(nav_bar_container);
-    nav_container.appendChild(nav_titles_container);
-
-    container.appendChild(nav_container);
 
     const vertical_nav_line = document.createElement('div');
     vertical_nav_line.setAttribute('class', 'vertical-nav-line');
     nav_bar_container.appendChild(vertical_nav_line);
 
-    buildNavLines(nav_bar_container, slides.length);
+    buildNavLines(nav_bar_container, slides);
 
     const location_icon = document.createElement('div');
     location_icon.setAttribute('class', 'location-icon');
     location_icon.setAttribute('id', 'location-icon');
 
     nav_bar_container.appendChild(location_icon);
+}
 
-    for( let [index, val] of slides.entries()) { 
-        const slide_item = document.createElement('li');
-        slide_item.setAttribute('class', 'nav-title');
-        slide_item.textContent = val.name
-        nav_titles_container.appendChild(slide_item);
-    }
+function buildNav(container, slides) {
+    const nav_container = document.createElement('div');
+    nav_container.setAttribute('class', 'nav-container');
 
     container.appendChild(nav_container);
+
+    buildNavBar(nav_container, slides);
+
+    buildNavTitles(nav_container, slides);
 }
 
 function buildLayout1(slide, data) {
@@ -84,7 +105,6 @@ function buildLayout1(slide, data) {
     p.textContent = data.description;
 
     text_container.appendChild(p);
-
     //slide.append(h1_tag);
     //slide.append(text_container);
 }
@@ -121,18 +141,36 @@ function buildPage(slides) {
 
     buildHeader(container, "sample level name");
 
-    buildNav(container, slides);
-
     buildSlides(slides, container);
+
+    buildNav(container, slides);
 
     buildFooter(container, "test track name", "test track author");
 
 
     const location_icon = document.getElementById('location-icon');
+
+    const nav_lines = document.getElementsByClassName('nav-line');
+    const nav_titles = document.getElementsByClassName('nav-title');
+
     //update navbar with upon scrolling
     container.addEventListener("scroll", function () {
         const percScroll = scrollUpdate(this);
         location_icon.style.top = String(percScroll) + '%';
+        let index;
+        for( index = 0; index < nav_lines.length; index++ ) {  
+            if( Math.abs(((100/(nav_lines.length-1)) * index) - percScroll) < 1 ) {
+                nav_lines[index].style.backgroundColor = "red";
+                nav_titles[index].style.color = "red";
+
+            }
+            else {
+                nav_lines[index].style.backgroundColor = "black";
+                nav_titles[index].style.color = "black";
+            }
+        }
     });
+
+
 }
 

@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   overflow: hidden;
+  font-size: 10;
 }
 
 #root {
@@ -85,12 +86,12 @@ footer {
   width: 90px;
 }
 .nav-container .nav-bar-container {
-  background-color: orange;
+  background-color: transparent;
   width: 50%;
   position: relative;
 }
 .nav-container .nav-bar-container .location-icon {
-  background-color: white;
+  background-color: teal;
   position: absolute;
   border-radius: 50%;
   left: 50%;
@@ -107,6 +108,7 @@ footer {
   height: 2px;
   margin-top: -1px;
   width: 100%;
+  transition: background-color 0.5s;
 }
 .nav-container .nav-bar-container .vertical-nav-line {
   background-color: black;
@@ -118,8 +120,15 @@ footer {
   height: 100%;
 }
 .nav-container .nav-titles-container {
-  background-color: yellow;
+  background-color: transparent;
+  position: relative;
+  font-size: 0.7em;
   width: 50%;
+}
+.nav-container .nav-titles-container .nav-title {
+  position: absolute;
+  left: 0%;
+  transition: color 0.5s;
 }
 
 /*# sourceMappingURL=style.css.map */
