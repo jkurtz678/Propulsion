@@ -1,11 +1,33 @@
+//introduce site and 
+function enterSite() {
+    console.log("enter clicked...");
+
+    //fade in elements
+    const nav_container = document.getElementById('nav-container');
+    nav_container.style.opacity = 1;
+    const header = document.querySelector('header');
+    header.style.opacity = 1;
+    const footer = document.querySelector('footer');
+    footer.style.opacity = 1;
+
+    //enable scroll
+    const container = document.getElementById('page-container');
+    container.style.overflow = 'scroll';
+
+    //scroll to first slide
+    const slideElements = document.getElementsByClassName('slide');
+    slideElements[1].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+}
+
 function buildIntro(slide, data) {
     slide.style.backgroundColor = "purple";
     slide.classList.add('intro-slide');
     const enter_btn = document.createElement('button');
+    enter_btn.classList.add('enter-btn');
     enter_btn.textContent = "enter";
+    enter_btn.addEventListener('click', enterSite);
     slide.appendChild(enter_btn);
 }
-
 
 function buildContent1(slide, data) {
     slide.style.backgroundColor = "red";

@@ -1,5 +1,7 @@
 footer {
 	display: flex;
+	opacity: 0;
+	transition: opacity $fade-in-start;
 	position: fixed;
 	background-color: yellow;
 	left: 0;

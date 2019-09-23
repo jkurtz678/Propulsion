@@ -1,5 +1,7 @@
-.nav-container {
+#nav-container {
 	display: flex;
+	opacity: 0;
+	transition: opacity $fade-in-start;
 	background-color: transparent;
 	position: fixed;
 	list-style: none;

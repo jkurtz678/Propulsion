@@ -28,8 +28,7 @@ function buildPage(slides) {
     const app = document.getElementById('root');
 
     const container = document.createElement('div');
-    container.setAttribute('class', 'container');
-    container.setAttribute('id', 'container');
+    container.setAttribute('id', 'page-container');
 
     app.appendChild(container);
 

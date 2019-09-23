@@ -73,12 +73,14 @@ function buildNavBar( nav_container, slides)  {
 
 function buildNav(container, slides) {
     const nav_container = document.createElement('div');
-    nav_container.setAttribute('class', 'nav-container');
+    nav_container.setAttribute('id', 'nav-container');
 
     container.appendChild(nav_container);
 
     buildNavBar(nav_container, slides);
 
     buildNavTitles(nav_container, slides);
+
+    //nav_container.style.visibility = 'hidden';
 
 }
