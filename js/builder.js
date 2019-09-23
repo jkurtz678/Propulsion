@@ -23,43 +23,6 @@ function buildFooter(container, trackName, trackAuthor) {
     container.appendChild(footer)
 }
 
-function buildLayout1(slide, data) {
-
-    const h1_tag = document.createElement('h1');
-    h1_tag.setAttribute('class', 'tagline');
-    h1_tag.textContent = data.name;
-
-    const text_container = document.createElement('div');
-    text_container.setAttribute('class', 'text-container');
-
-    const p = document.createElement('p');
-    p.textContent = data.description;
-
-    text_container.appendChild(p);
-    //slide.append(h1_tag);
-    //slide.append(text_container);
-}
-
-function buildSlides(slides, container) {
-    let i = 0;
-    slides.forEach( element => {
-        const slide = document.createElement('div');
-
-        if(i % 2 == 0) {
-            slide.setAttribute('style', 'background-color: red;');
-        }
-        else
-            slide.setAttribute('style', 'background-color: blue;');
-
-        slide.setAttribute('class', 'slide');
-
-        container.appendChild(slide);
-
-        buildLayout1(slide, element);
-
-        i++;
-    });
-}
 
 function buildPage(slides) {
     const app = document.getElementById('root');

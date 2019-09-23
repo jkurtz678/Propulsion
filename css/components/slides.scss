@@ -1,0 +1,45 @@
+html, body {
+	margin: 0;
+	overflow: hidden;
+	font-size: 10;
+}
+
+#root {
+	overflow: hidden;
+}
+
+h1, h2, h3 {
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+.container {
+	overflow: scroll;
+	height: 100vh;
+	scroll-snap-type: mandatory;
+  	scroll-snap-points-y: repeat(300px);
+  	scroll-snap-type: y mandatory;
+}
+.slide {
+	//overflow: auto;
+	display: flex;
+	justify-content: space-between;
+	height: 100vh;
+	scroll-snap-align: start;
+}
+
+
+.text-container {
+	position: relative;
+	width: 250px;
+	height: 60%;
+	background-color: gray;
+	margin: 10%;
+}
+
+.tagline {
+	margin: 10%;
+}

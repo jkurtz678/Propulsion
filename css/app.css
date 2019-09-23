@@ -1,22 +1,4 @@
-@import url("fontawesome-all.min.css");
-html, body {
-  margin: 0;
-  overflow: hidden;
-  font-size: 10;
-}
-
-#root {
-  overflow: hidden;
-}
-
-h1, h2, h3 {
-  margin: 0;
-}
-
-p {
-  margin: 0;
-}
-
+@import url("../webfonts/fontawesome-all.min.css");
 header {
   background-color: gray;
   position: fixed;
@@ -37,21 +19,6 @@ footer {
   height: 60px;
 }
 
-.container {
-  overflow: scroll;
-  height: 100vh;
-  scroll-snap-type: mandatory;
-  scroll-snap-points-y: repeat(300px);
-  scroll-snap-type: y mandatory;
-}
-
-.slide {
-  display: flex;
-  justify-content: space-between;
-  height: 100vh;
-  scroll-snap-align: start;
-}
-
 .player-container {
   display: flex;
   width: 66%;
@@ -60,9 +27,9 @@ footer {
 }
 
 .progress-div {
-  width: 200px;
   background-color: orange;
   display: flex;
+  width: 200px;
 }
 
 .progress-container {
@@ -81,18 +48,6 @@ footer {
   width: 34%;
   height: 100%;
   background-color: teal;
-}
-
-.text-container {
-  position: relative;
-  width: 250px;
-  height: 60%;
-  background-color: gray;
-  margin: 10%;
-}
-
-.tagline {
-  margin: 10%;
 }
 
 .nav-container {
@@ -159,4 +114,49 @@ footer {
   transition: color 0.5s;
 }
 
-/*# sourceMappingURL=style.css.map */
+html, body {
+  margin: 0;
+  overflow: hidden;
+  font-size: 10;
+}
+
+#root {
+  overflow: hidden;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.container {
+  overflow: scroll;
+  height: 100vh;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(300px);
+  scroll-snap-type: y mandatory;
+}
+
+.slide {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+.text-container {
+  position: relative;
+  width: 250px;
+  height: 60%;
+  background-color: gray;
+  margin: 10%;
+}
+
+.tagline {
+  margin: 10%;
+}
+
+/*# sourceMappingURL=app.css.map */
