@@ -19,7 +19,7 @@ function buildPlayButton(player_container, audio_element) {
 	player_container.appendChild(play_btn_anchor);
 
 	const play_btn_icon = document.createElement('i');
-	play_btn_icon.setAttribute('class', 'fas fa-play-circle');
+	play_btn_icon.setAttribute('class', 'fas fa-pause-circle');
 	play_btn_icon.style.fontFamily = "Font Awesome 5 Free";
 	play_btn_anchor.appendChild(play_btn_icon);
 
@@ -46,8 +46,8 @@ function buildProgressBar(player_container) {
 
 	const curr_time_label = document.createElement('p');
 	curr_time_label.setAttribute('class', 'progress-label');
+	curr_time_label.setAttribute('id', 'progress');
 	curr_time_label.textContent = "curr_time"
-
 
 	const progress_container = document.createElement('div');
 	progress_container.setAttribute('class', 'progress-container');
@@ -57,6 +57,8 @@ function buildProgressBar(player_container) {
 
 	const duration_label = document.createElement('p');
 	duration_label.setAttribute('class', 'progress-label');
+	duration_label.setAttribute('id', 'duration');
+
 	duration_label.textContent = "duration"
 
 	player_container.appendChild(progress_div);
@@ -77,6 +79,19 @@ function buildVolumeSlider(player_container) {
 
 }
 
+
+//stream song from server
+function playSong(songFile) {
+	const url = SERVER_URL + songFile;
+	const audio_source = document.getElementById('audio-source');
+	const audio_element = document.getElementById('audio-player');
+	audio_element.ontimeupdate = function() {
+		document.getElementById('progress').innerHTML = formatSongTime(audio_element.currentTime);
+	}
+	audio_source.setAttribute('src', url);
+	audio_element.load();
+}
+
 function buildAudioSource(player_container) {
 
 	console.log("building audio source... ");
@@ -88,13 +103,13 @@ function buildAudioSource(player_container) {
 
 	audio_element.addEventListener("load", function() {
 		console.log("load listener called");
-    	audio_element.play(); 
+    	audio_element.play();
  	}, true);
 	//audio_element.src = source;
 
 	const source_element = document.createElement('source');
 	source_element.setAttribute('id', 'audio-source');
-	source_element.setAttribute('src', 'http://localhost:3000/sleep.mp3');
+	//source_element.setAttribute('src', 'http://localhost:3000/sleep.mp3');
 
 	player_container.appendChild(audio_element);
 	audio_element.appendChild(source_element);

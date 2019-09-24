@@ -17,7 +17,8 @@ p {
 }
 
 #page-container {
-	overflow: fixed;
+	overflow: hidden;
+	//overflow: scroll;
 	height: 100vh;
 	scroll-snap-type: mandatory;
   	scroll-snap-points-y: repeat(300px);

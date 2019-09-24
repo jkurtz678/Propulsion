@@ -17,6 +17,9 @@ function enterSite() {
     //scroll to first slide
     const slideElements = document.getElementsByClassName('slide');
     slideElements[1].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+
+    //trigger music
+    playSong('sleep.mp3');
 }
 
 function buildIntro(slide, data) {
