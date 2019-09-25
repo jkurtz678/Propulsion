@@ -75,8 +75,34 @@ function buildProgressBar(player_container) {
   	//+ "<p id='duration_label' class='progressLabel'></p></div></div>
 }
 
-function buildVolumeSlider(player_container) {
+function buildVolumeSlider(player_container, audio_element) {
+	const volume_container = document.createElement('div');
+	volume_container.setAttribute('id', 'volume-container');
 
+	const mute_icon = document.createElement('i');
+	mute_icon.setAttribute('class', 'volume-icon fas fa-volume-off');
+
+	const volume_input = document.createElement('input');
+	volume_input.setAttribute('id', 'volume-input');
+	volume_input.type = "range";
+	volume_input.min = "0";
+	volume_input.max = "1";
+	volume_input.step = "0.01";
+	volume_input.value = "0.5";
+	volume_input.oninput = function() {
+		audio_element.volume = volume_input.value;
+	}
+
+	const volume_icon = document.createElement('i');
+	volume_icon.setAttribute('class', 'volume-icon fas fa-volume-up');
+
+	volume_container.appendChild(mute_icon);
+
+	volume_container.appendChild(volume_input);
+
+	volume_container.appendChild(volume_icon);
+
+	player_container.appendChild(volume_container);
 }
 
 
@@ -149,6 +175,6 @@ function buildPlayer(player_container) {
 	const audio_element = buildAudioSource(player_container);
 	buildPlayButton(player_container, audio_element);
 	buildProgressBar(player_container);
-	//buildVolumeSlider(player_container);
+	buildVolumeSlider(player_container, audio_element);
 	
 }
