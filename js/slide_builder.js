@@ -22,7 +22,7 @@ function enterSite() {
     playSong('sleep.mp3');
 }
 
-function buildIntro(slide, data) {
+function buildIntroSlide(slide, data) {
     slide.style.backgroundColor = "purple";
     slide.classList.add('intro-slide');
     const enter_btn = document.createElement('button');
@@ -32,7 +32,7 @@ function buildIntro(slide, data) {
     slide.appendChild(enter_btn);
 }
 
-function buildContent1(slide, data) {
+function buildContent1Slide(slide, data) {
     slide.style.backgroundColor = "red";
     /*
     const h1_tag = document.createElement('h1');
@@ -49,11 +49,11 @@ function buildContent1(slide, data) {
     //slide.append(h1_tag);
     //slide.append(text_container);*/
 }
-function buildContent2(slide, data) {
+function buildContent2Slide(slide, data) {
     slide.style.backgroundColor = "blue";
 }
 
-function buildCredits(slide, data) {
+function buildCreditSlide(slide, data) {
     slide.style.backgroundColor = "green";
 }
 
@@ -64,16 +64,16 @@ function buildSlides(slides, container) {
         slide.setAttribute('class', 'slide');
 
         if( element.layout === "intro") {
-            buildIntro(slide, element);
+            buildIntroSlide(slide, element);
         }
         else if( element.layout === "content_1") {
-            buildContent1(slide, element);
+            buildContent1Slide(slide, element);
         }
         else if( element.layout === "content_2")  {
-            buildContent2(slide, element);
+            buildContent2Slide(slide, element);
         }
         else if(element.layout === "credits") {
-            buildCredits(slide, element);
+            buildCreditSlide(slide, element);
         }
 
         container.appendChild(slide);

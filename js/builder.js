@@ -1,28 +1,12 @@
 function buildHeader(container, levelName) {
     const header = document.createElement('header');
     const h3 = document.createElement('h3');
-    h3.setAttribute('class', 'header-title');
+    h3.setAttribute('id', 'header-title');
     h3.textContent = levelName;
 
     header.appendChild(h3);
     container.appendChild(header);
 }
-
-function buildFooter(container, trackName, trackAuthor) {
-    const footer = document.createElement('footer');
-    const player_div = document.createElement('div');
-    player_div.setAttribute('class', 'player-container');
-    const credit_div = document.createElement('div');
-    credit_div.setAttribute('class', 'credit-container');
-
-    buildPlayer(player_div);
-
-    footer.appendChild(player_div);
-    footer.appendChild(credit_div);
-
-    container.appendChild(footer)
-}
-
 
 function buildPage(slides) {
     const app = document.getElementById('root');
@@ -47,6 +31,10 @@ function buildPage(slides) {
 
     //update navbar with upon scrolling
     container.addEventListener("scroll", function () {
+        const header_title = document.getElementById('header-title');
+        const song_name_label = document.getElementById('song-name-label');
+        const song_author_label = document.getElementById('song-author-label');
+
         const percScroll = scrollUpdate(this);
         location_icon.style.top = String(percScroll) + '%';
         let index;
@@ -54,7 +42,15 @@ function buildPage(slides) {
             if( Math.abs(((100/(nav_lines.length-1)) * index) - percScroll) < 1 ) {
                 nav_lines[index].style.backgroundColor = "white";
                 nav_titles[index].style.color = "white";
-
+                
+                // if not already triggered
+                if( header_title.innerHTML != slides[index].name ) {
+                    header_title.innerHTML = slides[index].name;
+                    song_name_label.innerHTML = slides[index].song_name;
+                    song_author_label.innerHTML = slides[index].song_author;
+                    playSong(slides[index].song_url);
+                }
+                
             }
             else {
                 nav_lines[index].style.backgroundColor = "black";

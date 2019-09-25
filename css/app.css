@@ -43,7 +43,7 @@ footer {
   height: 15px;
   background-color: white;
 }
-.progress-container .progress-bar {
+.progress-container #progress-bar {
   width: 1%;
   height: 15px;
   background-color: black;

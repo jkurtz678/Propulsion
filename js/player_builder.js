@@ -53,7 +53,7 @@ function buildProgressBar(player_container) {
 	progress_container.setAttribute('class', 'progress-container');
 
 	const progress_bar = document.createElement('div');
-	progress_bar.setAttribute('class', 'progress-bar');
+	progress_bar.setAttribute('id', 'progress-bar');
 
 	const duration_label = document.createElement('p');
 	duration_label.setAttribute('class', 'progress-label');
@@ -85,9 +85,7 @@ function playSong(songFile) {
 	const url = SERVER_URL + songFile;
 	const audio_source = document.getElementById('audio-source');
 	const audio_element = document.getElementById('audio-player');
-	audio_element.ontimeupdate = function() {
-		document.getElementById('progress').innerHTML = formatSongTime(audio_element.currentTime);
-	}
+	
 	audio_source.setAttribute('src', url);
 	audio_element.load();
 }
@@ -99,6 +97,20 @@ function buildAudioSource(player_container) {
 	audio_element.setAttribute('id', 'audio-player');
 	audio_element.autoplay = true;
 
+	audio_element.onloadedmetadata = function() {
+  		document.getElementById('duration').innerHTML = formatSongTime(audio_element.duration)
+  	};
+
+  	audio_element.ontimeupdate = function() {
+  		//update progress label
+		document.getElementById('progress').innerHTML = formatSongTime(audio_element.currentTime);
+		//update progress bar
+		const prog_bar = document.getElementById("progress-bar"); 
+		const progress = audio_element.currentTime/audio_element.duration;
+    	width = Math.round(progress * 100);
+    	const progress_percent = width + "%"
+    	prog_bar.style.width = progress_percent; 
+	}
 	//const source = "http://localhost:3000/sleep.mp3";
 
 	audio_element.addEventListener("load", function() {
@@ -106,6 +118,7 @@ function buildAudioSource(player_container) {
     	audio_element.play();
  	}, true);
 	//audio_element.src = source;
+
 
 	const source_element = document.createElement('source');
 	source_element.setAttribute('id', 'audio-source');
